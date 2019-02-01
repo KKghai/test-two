@@ -17,5 +17,3 @@ Run application using java.
 ```bach
 java -jar target/artifact.jar
 ```
-
-Enter two space separated integers and press enter. Enter \"exit\" to shut down.
