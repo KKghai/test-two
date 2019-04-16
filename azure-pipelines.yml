@@ -23,4 +23,4 @@ steps:
 - script: |
     docker build -t pasker127/shopaz .  
     docker login -u pasker127 -p 59731357zxc
-    docker push pasker127/shopaz 
+    docker push pasker127/shopaz
