@@ -8,6 +8,7 @@
     <artifactId>TestTwo</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
+             <finalName>artifact</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
