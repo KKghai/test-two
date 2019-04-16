@@ -21,6 +21,7 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 - script: |
-    docker build -t shop pasker127/shop .  
+    docker build -t pasker127/shop .  
+    docker images
     docker login -u pasker127 -p 59731357zxc
     docker push pasker127/shop
