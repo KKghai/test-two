@@ -5,7 +5,7 @@ MAINTAINER Andy Oskin <pasker127@gmail.com>
 RUN mkdir -p /opt/app
 ENV PROJECT_HOME /opt/app
 
-COPY build/libs/artifact.jar $PROJECT_HOME/artifact.jar
+COPY target/artifact.jar $PROJECT_HOME/artifact.jar
 
 WORKDIR $PROJECT_HOME
 
