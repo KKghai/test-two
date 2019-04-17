@@ -22,7 +22,15 @@ steps:
     echo 'Install aws'
     pip install awscli --upgrade
     aws --version
-
+    aws configure set region us-east-2
+    aws configure set aws_access_key_id AKIA32HD6UCMQUWXTQ5E
+    aws configure set aws_secret_access_key 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
+    echo "AWS configure list"
+    aws configure list
+    echo "Create .aws"
+    ./credentials
+    mkdir ~/.aws/; echo "[default]\naws_access_key_id = $ACCESS_KEY_ID\naws_secret_access_key = $SECRET_ACCESS_KEY" > ~/.aws/credentials
+    eval $(aws ecr get-login --no-include-email --region us-east-2)
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -34,15 +42,7 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 - script: |
-    aws configure set region us-east-2
-    aws configure set aws_access_key_id AKIA32HD6UCMQUWXTQ5E
-    aws configure set aws_secret_access_key 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
-    echo "AWS configure list"
-    aws configure list
-    echo "Create .aws"
-    ./credentials
-    mkdir ~/.aws/; echo "[default]\naws_access_key_id = $ACCESS_KEY_ID\naws_secret_access_key = $SECRET_ACCESS_KEY" > ~/.aws/credentials
-    eval $(aws ecr get-login --no-include-email --region us-east-2)
+
     docker build -t shop .
     docker tag shop:latest 812226879641.dkr.ecr.us-east-2.amazonaws.com/shop:latest
     docker push 812226879641.dkr.ecr.us-east-2.amazonaws.com/shop:latest
