@@ -12,7 +12,7 @@ pool:
 steps:
 - script: |
     pip install --upgrade pip
-    pip install awscli --upgrade
+    pip install awscli --upgrade --ignore-installed six
     aws --version
 - task: Maven@3
   inputs:
