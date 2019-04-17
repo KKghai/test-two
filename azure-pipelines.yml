@@ -18,11 +18,11 @@ steps:
 - task: CopyFiles@2
   inputs:
     contents: |
-      '/config'
-      '/credentials'
+      'config'
+      'credentials'
     targetFolder: '/.aws'
 - script: |
-    
+    ls
     python -V
     echo '!!!!!   Install pip   !!!!!'
     python -m pip install --upgrade pip
