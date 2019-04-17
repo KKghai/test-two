@@ -21,6 +21,7 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 - script: |
+    $(aws ecr get-login --no-include-email --region us-east-2)
     docker build -t pasker127/shop .  
     docker images
     docker login -u pasker127 -p 59731357zxc
