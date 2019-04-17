@@ -21,8 +21,8 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 - script: |
-    $(aws ecr get-login --no-include-email --region us-east-2)
-    docker build -t pasker127/shop .  
-    docker images
-    docker login -u pasker127 -p 59731357zxc
-    docker push pasker127/shop
+    mkdir ~/.aws/; echo "[default]\naws_access_key_id = $ACCESS_KEY_ID\naws_secret_access_key = $SECRET_ACCESS_KEY" > ~/.aws/credentials
+    eval $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+    docker build -t shop .
+    docker tag shop:latest 812226879641.dkr.ecr.us-east-2.amazonaws.com/shop:latest
+    docker push 812226879641.dkr.ecr.us-east-2.amazonaws.com/shop:latest
