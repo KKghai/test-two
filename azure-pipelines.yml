@@ -34,7 +34,7 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 - script: |
-    aws configure set region us-east-2 --profile integ
+    aws configure set region us-east-2
     aws configure set aws_access_key_id AKIA32HD6UCMQUWXTQ5E
     aws configure set aws_secret_access_key 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
     echo "AWS configure list"
