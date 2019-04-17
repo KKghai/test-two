@@ -9,4 +9,6 @@ COPY target/artifact.jar $PROJECT_HOME/artifact.jar
 
 WORKDIR $PROJECT_HOME
 
+EXPOSE 8000
+
 CMD ["java", "-jar","./shop-0.0.1-SNAPSHOT.jar"]
