@@ -15,13 +15,11 @@ steps:
     versionSpec: '3.6'
     architecture: 'x64'
 
-- task: CopyFiles@2
-  inputs:
-    contents: |
-      'config'
-      'credentials'
-    targetFolder: '/.aws'
 - script: |
+    mkdir ~/.aws/; echo "[default]\naws_access_key_id = $ACCESS_KEY_ID\naws_secret_access_key = $SECRET_ACCESS_KEY" > ~/.aws/credentials
+    cp -r config /.aws
+    cp -r credentials /.aws
+    cd ./aws
     ls
     python -V
     echo '!!!!!   Install pip   !!!!!'
@@ -34,7 +32,6 @@ steps:
     echo "!!!!!   AWS configure list   !!!!!"
     aws configure list
     echo "!!!!!   Create .aws   !!!!!"
-    mkdir ~/.aws/; echo "[default]\naws_access_key_id = $ACCESS_KEY_ID\naws_secret_access_key = $SECRET_ACCESS_KEY" > ~/.aws/credentials
     eval $(aws ecr get-login --no-include-email --region us-east-2)
 - task: Maven@3
   inputs:
