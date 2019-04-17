@@ -22,7 +22,8 @@ steps:
     echo 'Install aws'
     pip install awscli --upgrade
     aws --version
-    aws configure set region us-east-2 --profile shop
+    aws configure set region us-east-2
+    aws configure set profile.shop.region eu-east-1
     aws configure set aws_access_key_id AKIAJZ6QOSOLPNG5YZWA
     aws configure set aws_secret_access_key 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
     echo "AWS configure list"
