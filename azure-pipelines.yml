@@ -11,7 +11,9 @@ pool:
 
 steps:
 - script: |
+    echo 'Install pip'
     python -m pip install --upgrade pip
+    echo 'Install aws'
     pip install awscli --upgrade --ignore-installed six
     aws --version
 - task: Maven@3
