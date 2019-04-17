@@ -14,6 +14,7 @@ steps:
   inputs:
     versionSpec: '3.6'
     architecture: 'x64'
+
 - script: |
     python -V
     echo 'Install pip'
@@ -21,6 +22,7 @@ steps:
     echo 'Install aws'
     pip install awscli --upgrade
     aws --version
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -32,6 +34,9 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 - script: |
+    echo "AWS configure list"
+    aws configure list
+    echo "Create .aws"
     mkdir ~/.aws/; echo "[default]\naws_access_key_id = $ACCESS_KEY_ID\naws_secret_access_key = $SECRET_ACCESS_KEY" > ~/.aws/credentials
     eval $(aws ecr get-login --no-include-email --region us-east-2 | sed 's|https://||')
     docker build -t shop .
