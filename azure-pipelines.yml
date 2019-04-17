@@ -11,8 +11,9 @@ pool:
 
 steps:
 - script:
-    pip install awscli --upgrade
-    aws --version
+    pip install --upgrade pip;
+    pip install awscli --upgrade;
+    aws --version;
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
