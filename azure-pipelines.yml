@@ -10,6 +10,9 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
+- script:
+    pip --version
+    pip install awscli --upgrade
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -21,7 +24,7 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 - script:
-    -curl -O https://bootstrap.pypa.io/get-pip.py
+    pip install awscli --upgrade
     mkdir ~/.aws/; echo "[default]\naws_access_key_id = $ACCESS_KEY_ID\naws_secret_access_key = $SECRET_ACCESS_KEY" > ~/.aws/credentials
     eval $(aws ecr get-login --no-include-email --region us-east-2 | sed 's|https://||')
     docker build -t shop .
