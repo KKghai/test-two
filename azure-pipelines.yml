@@ -16,23 +16,11 @@ steps:
     architecture: 'x64'
 
 - script: |
-    python -V
-    echo '!!!!!   Install pip   !!!!!'
     python -m pip install --upgrade pip
-    echo '!!!!!   Install aws   !!!!!'
     pip install awscli --upgrade
-    # aws configure set region us-east-2
-    # aws configure set aws_access_key_id AKIAJZ6QOSOLPNG5YZWA
-    # aws configure set aws_secret_access_key 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
-    echo "!!!!!   AWS configure list   !!!!!"
-    aws configure list
-    echo "!!!!!   Create .aws   !!!!!"
     mkdir ~/.aws/; echo "[default]\naws_access_key_id = $ACCESS_KEY_ID\naws_secret_access_key = $SECRET_ACCESS_KEY" > ~/.aws/credentials
     cp -r config ~/.aws
     cp -r credentials ~/.aws
-    cd ~./aws
-    ls
-    eval $(aws ecr get-login --no-include-email --region us-east-2)
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -44,7 +32,6 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 - script: |
-
     docker build -t shop .
     docker tag shop:latest 812226879641.dkr.ecr.us-east-2.amazonaws.com/shop:latest
     docker push 812226879641.dkr.ecr.us-east-2.amazonaws.com/shop:latest
