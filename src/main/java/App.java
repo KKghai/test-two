@@ -7,7 +7,7 @@ public class App {
         final Scanner sc = new Scanner(System.in);
 
         for (;;) {
-            System.out.println("Enter `m` : ");
+            System.out.println("Ented `m` : ");
             try {
                 m = Integer.parseInt(sc.next());
                 break;
